@@ -1,0 +1,39 @@
+name: Generate SBOM
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  generate-sbom:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install cyclonedx-bom
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Generate SBOM
+      run: |
+        source venv/bin/activate
+        cyclonedx-py requirements requirements.txt -o sbom.json
+
+    - name: Upload SBOM as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: sbom
+        path: sbom.json
