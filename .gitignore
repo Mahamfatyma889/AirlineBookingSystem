@@ -1,20 +1,22 @@
 # Python
-__pycache__/
 *.pyc
+__pycache__/
 *.pyo
 *.pyd
-
-# Virtual environments
-venv/
-env/
-
-# Database
-db.sqlite3
-
-# Logs & debug
+*.sqlite3
 *.log
-*.txt
 
-# OS files
-.DS_Store
-Thumbs.db
+# Env / virtual environments
+env/
+venv/
+
+# IDEs
+.vscode/
+.idea/
+
+# Node / React
+node_modules/
+build/
+
+# Static files (optional if collected in project)
+staticfiles/
