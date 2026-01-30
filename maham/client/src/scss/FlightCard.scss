@@ -1,7 +1,12 @@
 @use "./Variables.scss" as var;
 
 .__FlightCard {
+  display: block; // Ensure Link behaves as a block container
+  text-decoration: none; // Remove default underline
+  color: inherit; // Inherit color
   max-width: 300px;
+  cursor: pointer; // Ensure it looks clickable
+
   .card {
     width: 100%;
     background: var.$primary-blue;
@@ -9,17 +14,21 @@
     border-radius: 12px;
     border: none;
     position: relative;
+
     &.auction {
       position: relative;
+
       .card-img-top {
         position: relative;
         transition: 300ms;
         z-index: 100;
-        &:hover{
+
+        &:hover {
           transition: 300ms;
           opacity: .3;
         }
       }
+
       .highlight {
         z-index: 10;
         position: absolute;
@@ -29,20 +38,24 @@
         font-size: 1.5rem;
         font-weight: 900;
       }
+
       &:hover {
         .bidButton {
           color: var(--PC) !important;
           transition: 300ms;
         }
       }
+
       padding: 0;
       margin: 0;
       border: none;
       outline: none;
+
       img {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
       }
+
       .card-body {
         background: #f8f8f8;
         border-radius: 10px;
@@ -50,6 +63,7 @@
         border-top-right-radius: 0;
         border-top: 0;
         color: #000000;
+
         .row2 {
           .bid {
             .label {
@@ -57,16 +71,20 @@
             }
           }
         }
+
         .button {
           justify-content: space-between;
+
           .bidButton {
             color: transparent;
             transition: 300ms;
           }
+
           .timeLeft {
             color: rgba(0, 0, 0, 0.5);
             font-size: 12px;
             word-spacing: 3px;
+
             b {
               font-size: 1.3rem;
             }
@@ -74,11 +92,13 @@
         }
       }
     }
+
     img {
       border-radius: 12px;
       height: 200px;
       width: 100%;
     }
+
     .card-body {
       display: flex;
       justify-content: center;
@@ -86,16 +106,19 @@
       flex-direction: column;
       width: 100%;
       color: #ffffff;
+
       .row1 {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         flex-direction: row;
         width: 100%;
-        .small-airplane{
+
+        .small-airplane {
           width: 100%;
           height: 4rem;
         }
+
         .title {
           font-weight: 400;
           font-size: 1rem;
@@ -106,12 +129,14 @@
           // overflow: hidden !important;
           // text-overflow: ellipsis;
         }
+
         .number {
           font-weight: 700;
           font-size: 1rem;
           line-height: 1rem;
         }
       }
+
       .button {
         width: 100%;
         display: flex;
@@ -119,6 +144,7 @@
         align-items: center;
         flex-direction: row;
         padding-top: 1rem;
+
         .bidButton {
           color: var(--PC);
           font-weight: 700;

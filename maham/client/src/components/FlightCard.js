@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./../scss/FlightCard.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
 
 export default function FlightCard(props) {
+  const navigate = useNavigate();
+
   if (!props.flight) return;
 
+  const handleCardClick = (e) => {
+    // Prevent navigation if clicking on tooltip-related elements might be desired,
+    // though navigating is usually expected behavior for the card.
+    navigate(`/details/${props.flight.id}`);
+  };
+
   return (
-    <Link to={`/details/${props.flight.id}`} className="__FlightCard">
+    <div
+      onClick={handleCardClick}
+      className="__FlightCard"
+      style={{ cursor: "pointer" }}
+    >
       <div className={`card auction`}>
         <img
           src={
@@ -31,8 +43,12 @@ export default function FlightCard(props) {
                 id={`O${props.index}`}
                 type="success"
                 effect="solid"
+                clickable={true}
               >
-                <span>Departure on {new Date(props.flight.departure_Time).toUTCString()}</span>
+                <span>
+                  Departure on{" "}
+                  {new Date(props.flight.departure_Time).toUTCString()}
+                </span>
               </ReactTooltip>
             </div>
             <div className="col-4">
@@ -47,8 +63,15 @@ export default function FlightCard(props) {
               <b className="text-danger" data-tip data-for={`D${props.index}`}>
                 {props.flight.destination_Country.name}
               </b>
-              <ReactTooltip id={`D${props.index}`} type="error" effect="solid">
-                <span>Landing on {new Date(props.flight.landing_Time).toUTCString()}</span>
+              <ReactTooltip
+                id={`D${props.index}`}
+                type="error"
+                effect="solid"
+                clickable={true}
+              >
+                <span>
+                  Landing on {new Date(props.flight.landing_Time).toUTCString()}
+                </span>
               </ReactTooltip>
             </div>
           </div>
@@ -65,6 +88,6 @@ export default function FlightCard(props) {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

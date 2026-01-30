@@ -58,6 +58,10 @@ function Login(props) {
                     role: response.data.role,
                     first_name: response.data.first_name,
                     last_name: response.data.last_name,
+                    first_name: response.data.first_name,
+                    last_name: response.data.last_name,
+                    address: response.data.address,
+                    phone_no: response.data.phone_no,
                     signedUpAt: response.data.signedUpAt,
                   },
                 })

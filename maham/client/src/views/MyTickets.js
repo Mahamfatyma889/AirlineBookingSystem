@@ -28,7 +28,7 @@ export default function MyTickets() {
 
   const fetchFlights = async (myID) => {
     await axiosInstance
-      .get(`api/tickets-by-user/${myID}`)
+      .get(`api/tickets-by-user/${myID}/`)
       .then((response) => {
         if (response.data.length > 0) {
           setTickets(response.data);

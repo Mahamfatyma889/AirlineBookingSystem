@@ -17,7 +17,7 @@ export default function Cart() {
   const [flights, setFlights] = useState([]);
   const fetchFlights = async () => {
     await axiosInstance
-      .get(`api/flights`)
+      .get(`api/flights/`)
       .then((response) => {
         if (response.data.length > 0) {
           setFlights(response.data);
@@ -42,18 +42,19 @@ export default function Cart() {
   };
 
   const checkout = async () => {
-    cart.map(async (id, one) => {
-      await axiosInstance
+    const promises = cart.map(async (id, one) => {
+      return await axiosInstance
         .post(`api/create-ticket/`, {
           flight: id.id,
           customer: session.personal?.id,
           quantity: parseInt(id.quantity),
         })
-        .then((response) => {})
+        .then((response) => { })
         .catch((error) => {
           console.error(error);
         });
     });
+    await Promise.all(promises);
     localStorage.removeItem("myCart");
     navigate("/myTickets");
   };
@@ -93,9 +94,8 @@ export default function Cart() {
                                       src={
                                         myFlight?.image !== ""
                                           ? myFlight?.image
-                                          : `https://picsum.photos/600?random=${
-                                              parseInt(one) + 1
-                                            }`
+                                          : `https://picsum.photos/600?random=${parseInt(one) + 1
+                                          }`
                                       }
                                       className="img-fluid rounded-3"
                                       alt="Shopping item"

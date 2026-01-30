@@ -25,7 +25,7 @@ export default function Details() {
 
   const fetchFlight = async (id = id) => {
     await axiosInstance
-      .get(`api/flights/${id}`)
+      .get(`api/flights/${id}/`)
       .then((response) => {
         setFlight(response.data);
       })
@@ -126,8 +126,8 @@ export default function Details() {
                       if (
                         parseInt(e.target.value) > 0 &&
                         parseInt(flight?.remaining_Tickets) -
-                          parseInt(e.target.value) >=
-                          0
+                        parseInt(e.target.value) >=
+                        0
                       ) {
                         setQuantity(e.target.value);
                       }
@@ -138,9 +138,8 @@ export default function Details() {
                 <div className="w-100 mt-1 cartButton">
                   <button
                     type="button"
-                    className={`btn btn-${
-                      flight?.remaining_Tickets < 1 ? "warning" : "primary"
-                    }`}
+                    className={`btn btn-${flight?.remaining_Tickets < 1 ? "warning" : "primary"
+                      }`}
                     style={{
                       padding: "12px 15px",
                     }}
@@ -159,17 +158,17 @@ export default function Details() {
                     }
                   >
                     {cart &&
-                    cart
-                      .map((a, i) => {
-                        return a.id;
-                      })
-                      .includes(flight?.id)
+                      cart
+                        .map((a, i) => {
+                          return a.id;
+                        })
+                        .includes(flight?.id)
                       ? "Added to Cart"
                       : flight?.remaining_Tickets < 1
-                      ? "Flight Full"
-                      : session.personal?.role === "airlineOwner"
-                      ? "You're Airline Owner"
-                      : "Add to Cart"}
+                        ? "Flight Full"
+                        : session.personal?.role === "airlineOwner"
+                          ? "You're Airline Owner"
+                          : "Add to Cart"}
                   </button>
                 </div>
               </div>

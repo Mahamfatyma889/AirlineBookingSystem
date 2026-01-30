@@ -38,7 +38,7 @@ export default function Home() {
 
   const fetchCountries = async () => {
     await axiosInstance
-      .get(`api/countries`)
+      .get(`api/countries/`)
       .then((response) => {
         setCountries(response.data);
       })
@@ -68,12 +68,12 @@ export default function Home() {
                   onChange={changeData}
                   value={data.origin_Country}
                 >
-                  <option value="" selected>
+                  <option value="">
                     Everywhere
                   </option>{" "}
                   {countries.map((country, index) => {
                     return (
-                      <option value={country.id} key={index}>
+                      <option value={country.id} key={country.id}>
                         {country.name}
                       </option>
                     );
@@ -93,12 +93,12 @@ export default function Home() {
                   onChange={changeData}
                   value={data.destination_Country}
                 >
-                  <option value="" selected>
+                  <option value="">
                     Everywhere
                   </option>{" "}
                   {countries.map((country, index) => {
                     return (
-                      <option value={country.id} key={index}>
+                      <option value={country.id} key={country.id}>
                         {country.name}
                       </option>
                     );
@@ -163,12 +163,12 @@ export default function Home() {
         </div>
       </div>
       <div className="row w-100 center-in-there" id="allFlights">
-        <div className="row d-flex center-in-there p-5" style={{width:"80%"}}>
+        <div className="row d-flex center-in-there p-5" style={{ width: "80%" }}>
           {flights.length > 0 ? (
             flights.map((flight, index) => {
               return (
                 <div className="col-lg-3 col-sm-12 col-md-4 my-3">
-                  <FlightCard flight={flight} index={index} key={index} />
+                  <FlightCard flight={flight} index={index} key={flight.id || index} />
                 </div>
               );
             })

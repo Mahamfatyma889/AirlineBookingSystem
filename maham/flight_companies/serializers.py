@@ -31,7 +31,7 @@ class FlightsSerializer(serializers.ModelSerializer):
 
 
 class ViewFlightsSerializer(serializers.ModelSerializer):
-    airline_Company = AirlineCompanySerializer()
+    airline_Company = ViewAirlineCompanySerializer()
     origin_Country = ViewCountrySerializer()
     destination_Country = ViewCountrySerializer()
 

@@ -38,7 +38,7 @@ const Navbar = (props) => {
         <div className={`collapse navbar-collapse`} id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to="/" className="nav-link simple-nav-link active">
+              <Link to="/profile" className="nav-link simple-nav-link active">
                 Hi, <span className="text-success">{props.username}</span>
               </Link>
             </li>
@@ -48,75 +48,73 @@ const Navbar = (props) => {
               </Link>
             </li>
           </ul>
-          <div className="form-inline d-flex flex-row my-2 my-lg-0">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item signup">
-                <Link to="/cart" className="Button-Custom-1 fill">
-                  <span className="content">
-                    <span className="type">Cart</span>
-                  </span>
-                </Link>
-              </li>
-              {!props.isLoggedIn ? (
-                <>
-                  <li className="nav-item signup">
-                    <Link to="/login" className="Button-Custom-1 fill">
-                      <span className="content">
-                        <span className="type">Log In</span>
-                      </span>
-                    </Link>
-                  </li>
-                  <li className="nav-item signup">
-                    <Link to="/register" className="Button-Custom-1 fill">
-                      <span className="content">
-                        <span className="type">Register</span>
-                      </span>
-                    </Link>
-                  </li>
-                </>
-              ) : (
-                <>
-                  {props.role === "user" ? (
-                    <>
-                      <li className="nav-item signup">
-                        <Link
-                          to="/myTickets"
-                          className="Button-Custom-1 fill w-100"
-                        >
-                          <span className="content">
-                            <span className="type">MyTickets</span>
-                          </span>
-                        </Link>
-                      </li>
-                    </>
-                  ) : props.role === "airlineOwner" ? (
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item signup">
+              <Link to="/cart" className="Button-Custom-1 fill">
+                <span className="content">
+                  <span className="type">Cart</span>
+                </span>
+              </Link>
+            </li>
+            {!props.isLoggedIn ? (
+              <>
+                <li className="nav-item signup">
+                  <Link to="/login" className="Button-Custom-1 fill">
+                    <span className="content">
+                      <span className="type">Log In</span>
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item signup">
+                  <Link to="/register" className="Button-Custom-1 fill">
+                    <span className="content">
+                      <span className="type">Register</span>
+                    </span>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                {props.role === "user" ? (
+                  <>
                     <li className="nav-item signup">
                       <Link
-                        to="/myFlights"
+                        to="/myTickets"
                         className="Button-Custom-1 fill w-100"
                       >
                         <span className="content">
-                          <span className="type">MyFlights</span>
+                          <span className="type">MyTickets</span>
                         </span>
                       </Link>
                     </li>
-                  ) : (
-                    ""
-                  )}
+                  </>
+                ) : props.role === "airlineOwner" ? (
                   <li className="nav-item signup">
-                    <button
-                      className="Button-Custom-1 fill red"
-                      onClick={logout}
+                    <Link
+                      to="/myFlights"
+                      className="Button-Custom-1 fill w-100"
                     >
                       <span className="content">
-                        <span className="type">Logout</span>
+                        <span className="type">MyFlights</span>
                       </span>
-                    </button>
+                    </Link>
                   </li>
-                </>
-              )}
-            </ul>
-          </div>
+                ) : (
+                  ""
+                )}
+                <li className="nav-item signup">
+                  <button
+                    className="Button-Custom-1 fill red"
+                    onClick={logout}
+                  >
+                    <span className="content">
+                      <span className="type">Logout</span>
+                    </span>
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
         </div>
       </nav>
     </>

@@ -9,6 +9,7 @@ import MyFlights from "./views/MyFlights";
 import MyTickets from "./views/MyTickets";
 import Details from "./components/Details";
 import Cart from "./views/Cart";
+import Profile from "./views/Profile";
 
 function App() {
   return (
@@ -25,6 +26,14 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route
+            path="/profile"
+            element={
+              <Layout>
+                <Profile />
+              </Layout>
+            }
+          />
           <Route
             path="myFlights"
             element={

@@ -23,7 +23,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['username'] = self.user.username
         data['email'] = self.user.email
         data['role'] = self.user.role
-        data['address'] = self.user.address
+        print(f"DEBUG: User address: {self.user.address}")
+        data['address'] = self.user.address if self.user.address else ""
         data['phone_no'] = self.user.phone_no
         data['first_name'] = self.user.first_name
         data['last_name'] = self.user.last_name

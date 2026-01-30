@@ -8,7 +8,7 @@ from .serializers import ViewCountrySerializer, AirlineCompanySerializer, ViewAi
 # Create your views here.
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 # @permission_classes([IsAuthenticated])
 @authentication_classes([])
 @permission_classes([])
@@ -180,14 +180,12 @@ def flights(request, pk=-1):
             serializer = ViewFlightsSerializer(flightObj, many=False)
         else:
             flights = Flight.objects.all()
-            # can the 'many' be removed?
             serializer = ViewFlightsSerializer(flights, many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
-    except:
-        flights = Flight.objects.all()
-        # can the 'many' be removed?
-        serializer = ViewFlightsSerializer(flights, many=True)
-        return Response(status=status.HTTP_400_BAD_REQUEST, data=serializer.data)
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR, data={"error": str(e)})
 
 
 @api_view(['GET'])
